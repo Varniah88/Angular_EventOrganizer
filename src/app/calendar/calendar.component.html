@@ -1,0 +1,55 @@
+<html>
+
+<div class="d-flex justify-content-around">
+<div class=".col-md-6">
+  <full-calendar [plugins]="calendarPlugins"
+                 (dayRender) = "dayRender($event)"
+                 (eventRender) = "eventRender($event)"
+                 [header] ="{
+  left: 'title',
+  right: 'today prev,next'
+  }">
+
+  </full-calendar>
+</div>
+<div class="col-md-6">
+  <div >
+    <br>
+    <br>
+    <br>
+    <table class="border border-primary table table-hover">
+
+      <tr class="border border-danger  font-weight-normal text-lg-center text-capitalize">
+        {{nextevent}}
+      </tr>
+      <tr class="border border-danger font-weight-normal text-lg-center text-capitalize">
+        Remaining Days : {{nexteventrem}}
+      </tr>
+    </table>
+  </div>
+  <br>
+  <br>
+<div>
+  <table class="border border-primary table table-hover">
+    <tr class="border border-primary font-weight-normal text-lg-center">
+      <th class="border border-primary font-weight-normal text-lg-center text-capitalize">Event</th>
+      <th class="border border-primary font-weight-normal text-lg-center text-capitalize">Day and Date </th>
+      <th class="border border-primary font-weight-normal text-lg-center text-capitalize">Edit</th>
+      <th class="border border-primary font-weight-normal text-md-center text-capitalize">Delete</th>
+    </tr>
+
+        <tr class="border border-primary font-weight-normal text-lg-center text-capitalize" *ngFor="let hero of calendarEvents; let i = index" >
+
+        <td class="border border-primary font-weight-normal text-lg-center text-capitalize" >  <span class="badge">{{hero.title}}   </span> </td>
+          <td class="border border-primary font-weight-normal text-md-center text-capitalize"><span class="badge">{{hero.start}}   </span></td>
+     <td class="border border-primary">     <button  class="btn btn-success btn-sm " (click)="edit(hero,i)">Edit</button></td>
+     <td class="border border-primary">     <button  class="btn btn-danger btn-sm" (click)="delete(hero,i)">Delete</button></td>
+
+    </tr>
+  </table>
+</div>
+</div>
+</div>
+
+
+</html>
